@@ -1,0 +1,21 @@
+## Interface: 11200
+## Author: Brandon Pierce
+## Version: 1.0
+## Title: SmellyUI
+## SavedVariables: SmellyUI_DB
+
+debug.lua
+extensions.lua
+index.lua
+config.lua
+api.lua
+
+packages\actionbar.lua
+packages\aura.lua
+packages\cooldown.lua
+packages\mail.lua
+packages\map.lua
+packages\scale.lua
+packages\tracking.lua
+packages\worldmap.lua
+packages\xp.lua
