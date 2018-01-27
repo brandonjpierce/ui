@@ -7,8 +7,7 @@ local size = S.size
 
 local f = CreateFrame('Frame')
 local xp = CreateFrame('Frame')
-local restedColor = { 75/255, 175/255, 76/255 }
-local xpColor = { 0/255, 144/255, 255/255 }
+local blocks = 20
 
 local function updateXp()
   xp:UnregisterEvent('PLAYER_ENTERING_WORLD')
@@ -66,22 +65,40 @@ function f:ADDON_LOADED(addon)
   point(xp, 'BOTTOMRIGHT', 1, -2)
   height(xp, 10)
   backdrop(xp)
+  xp.bg:SetBackdropColor(15/255, 15/255, 15/255)
 
   xp.bar = CreateFrame('StatusBar', nil, xp)
   xp.bar:SetStatusBarTexture(C.textures.blank)
   xp.bar:ClearAllPoints()
   xp.bar:SetAllPoints(xp)
-  xp.bar:SetFrameStrata('HIGH')
-  xp.bar:SetStatusBarColor(unpack(xpColor))
+  xp.bar:SetFrameStrata('MEDIUM')
+  xp.bar:SetStatusBarColor(213/255, 147/255, 0/255)
 
   xp.rested = CreateFrame('StatusBar', nil, xp)
   xp.rested:SetStatusBarTexture(C.textures.blank)
   xp.rested:ClearAllPoints()
   xp.rested:SetAllPoints(xp)
-  xp.rested:SetFrameStrata('MEDIUM')
-  xp.rested:SetStatusBarColor(unpack(restedColor))
-  xp.rested:SetAlpha(0.5)
+  xp.rested:SetFrameStrata('LOW')
+  xp.rested:SetStatusBarColor(213/255, 147/255, 0/255)
+  xp.rested:SetAlpha(0.3)
   xp.rested:Hide()
+
+  local separatorSpacing = S.scale(xp:GetWidth() / blocks)
+
+  for i = 1, blocks do
+    local sep = CreateFrame('Frame', 'XpSep' .. i, xp)
+    sep:SetFrameStrata('HIGH')
+    S.size(sep, 1, 10)
+    backdrop(sep)
+    sep.bg:SetAllPoints()
+
+    if i == 1 then
+      point(sep, 'LEFT', xp, 'LEFT', separatorSpacing, 0)
+    else
+      local last = _G['XpSep' .. i - 1]
+      point(sep, 'LEFT', last, 'LEFT', separatorSpacing, 0)
+    end
+  end
 
   xp:RegisterEvent('PLAYER_XP_UPDATE')
   xp:RegisterEvent('PLAYER_LEVEL_UP')

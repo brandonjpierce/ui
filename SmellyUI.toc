@@ -9,13 +9,17 @@ extensions.lua
 index.lua
 config.lua
 api.lua
+anim.lua
 
 packages\actionbar.lua
 packages\aura.lua
+packages\bags.lua
 packages\cooldown.lua
+packages\hud.lua
 packages\mail.lua
 packages\map.lua
-packages\scale.lua
 packages\tracking.lua
 packages\worldmap.lua
 packages\xp.lua
+
+packages\uf\player.lua

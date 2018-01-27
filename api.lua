@@ -2,7 +2,7 @@ setfenv(1, SmellyUI.engine)
 
 local floor = math.floor
 
-local noop = function() return end
+local noop = function() end
 local blank = C.textures.blank;
 local mult = C.graphics.mult
 

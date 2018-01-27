@@ -8,6 +8,7 @@ setfenv(1, SmellyUI.engine)
 local backdrop = S.backdrop
 local inside = S.inside
 local kill = S.kill
+local outside = S.outside
 local point = S.point
 local size = S.size
 
@@ -39,9 +40,14 @@ function f:ADDON_LOADED(addon)
   Minimap:SetParent(UIParent)
   Minimap:SetMaskTexture('Interface\\AddOns\\SmellyUI\\textures\\blank')
   Minimap:ClearAllPoints()
-  size(Minimap, 160)
+  size(Minimap, 120)
   backdrop(Minimap)
   point(Minimap, 'BOTTOM', 0, 20)
+
+  local shadow = CreateFrame('Frame', nil, UIParent)
+  shadow.t = shadow:CreateTexture(nil, Minimap)
+  shadow.t:SetTexture(C.textures.map)
+  outside(shadow.t, Minimap)
 
   -- mail icon
   MiniMapMailFrame:ClearAllPoints()
