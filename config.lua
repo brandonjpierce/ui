@@ -34,3 +34,7 @@ C.textures = {
     leftWater = 'Interface\\AddOns\\SmellyUI\\textures\\shadows\\left-swim',
   }
 }
+
+C.modules = {
+  bags = false
+}

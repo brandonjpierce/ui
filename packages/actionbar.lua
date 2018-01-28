@@ -5,8 +5,8 @@ setfenv(1, SmellyUI.engine)
 -- 2. Setup hover bind feature from Elv
 -- 4. Test the shit out things
 
-local spacing = 5
-local buttonSize = 48 - spacing
+local buttonSize = 48
+local buttonSpacing = 5
 
 local f = CreateFrame('Frame')
 
@@ -129,7 +129,7 @@ local function setupBar(frame, buttonRef, buttonCount)
 
   frame:SetFrameStrata('LOW')
   frame:SetFrameLevel(3)
-  S.size(frame, (buttonSize  * buttonCount + (spacing * buttonCount)), buttonSize)
+  S.size(frame, ((buttonSize + buttonSpacing) * buttonCount) - buttonSpacing, buttonSize)
 
   for i = 1, buttonCount do
     local button = _G[buttonRef .. i]
@@ -141,7 +141,7 @@ local function setupBar(frame, buttonRef, buttonCount)
         S.point(button, 'LEFT', frame, 'LEFT', 0, 0)
       else
         local previous = _G[buttonRef .. (i - 1)]
-        S.point(button, 'LEFT', previous, 'RIGHT', spacing, 0)
+        S.point(button, 'LEFT', previous, 'RIGHT', buttonSpacing, 0)
       end
 
       button:SetAlpha(1)
@@ -299,7 +299,7 @@ function f:PLAYER_ENTERING_WORLD()
   -- Bar 2
   if SHOW_MULTI_ACTIONBAR_1 then
     setupBar(actionbars.bar2, 'MultiBarBottomLeftButton', 6)
-    S.point(actionbars.bar2, 'BOTTOMLEFT', Minimap, 'BOTTOMRIGHT', 10 + spacing, 0)
+    S.point(actionbars.bar2, 'BOTTOMLEFT', Minimap, 'BOTTOMRIGHT', 10, 0)
     MultiBarBottomLeft:ClearAllPoints()
     MultiBarBottomLeft:SetAllPoints(actionbars.bar2)
   end

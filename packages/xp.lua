@@ -8,6 +8,8 @@ local size = S.size
 local f = CreateFrame('Frame')
 local xp = CreateFrame('Frame')
 local blocks = 20
+local anim
+local progressXp
 
 local function updateXp()
   xp:UnregisterEvent('PLAYER_ENTERING_WORLD')
@@ -20,7 +22,9 @@ local function updateXp()
     local isRested = GetRestState()
 
     xp.bar:SetMinMaxValues(0, max)
-    xp.bar:SetValue(currentXp)
+
+    progressXp:SetChange(currentXp)
+    progressXp:Play()
 
     if isRested == 1 and currentRested then
       xp.rested:Show()
@@ -99,6 +103,11 @@ function f:ADDON_LOADED(addon)
       point(sep, 'LEFT', last, 'LEFT', separatorSpacing, 0)
     end
   end
+
+  anim = CreateAnimationGroup(xp.bar)
+  progressXp = anim:CreateAnimation('progress')
+  progressXp:SetDuration(2)
+  progressXp:SetSmoothing('inout')
 
   xp:RegisterEvent('PLAYER_XP_UPDATE')
   xp:RegisterEvent('PLAYER_LEVEL_UP')

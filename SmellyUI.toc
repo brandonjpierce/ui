@@ -9,7 +9,7 @@ extensions.lua
 index.lua
 config.lua
 api.lua
-anim.lua
+anim-lib.lua
 
 packages\actionbar.lua
 packages\aura.lua

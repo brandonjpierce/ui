@@ -4,10 +4,10 @@ local f = CreateFrame('Frame')
 
 function f:ADDON_LOADED(addon)
   if addon ~= 'SmellyUI' then return end
-
   f:UnregisterEvent('ADDON_LOADED')
 
-  hooksecurefunc(OpenMailFrame, 'Show', function()
+  -- TODO: fix this
+  OpenMailFrame:SetScript('OnShow', function()
     if not IsShiftKeyDown() then return end
 
     if OpenMailMoneyButton:IsVisible() then

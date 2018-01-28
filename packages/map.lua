@@ -14,6 +14,7 @@ local size = S.size
 
 local f = CreateFrame('Frame')
 
+
 function f:ADDON_LOADED(addon)
   if addon ~= 'SmellyUI' then return end
   f:UnregisterEvent('ADDON_LOADED')
@@ -44,7 +45,7 @@ function f:ADDON_LOADED(addon)
   backdrop(Minimap)
   point(Minimap, 'BOTTOM', 0, 20)
 
-  local shadow = CreateFrame('Frame', nil, UIParent)
+  local shadow = CreateFrame('Frame', nil, Minimap)
   shadow.t = shadow:CreateTexture(nil, Minimap)
   shadow.t:SetTexture(C.textures.map)
   outside(shadow.t, Minimap)
