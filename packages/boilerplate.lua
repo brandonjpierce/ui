@@ -8,7 +8,9 @@ function f:ADDON_LOADED(addon)
 
 end
 
-f:RegisterEvent('ADDON_LOADED')
-f:SetScript('OnEvent', function()
+function f:OnEvent()
   this[event](this, arg1)
-end)
+end
+
+f:RegisterEvent('ADDON_LOADED')
+f:SetScript('OnEvent', f.OnEvent)

@@ -498,6 +498,9 @@ end
 
 -- Movement
 local MoveOnUpdate = function(self, elapsed)
+	if not self then self = this end
+	if not elapsed then elapsed = arg1 end
+
 	for i = 1, table.getn(self) do
 		MoveAnim = self[i]
 
@@ -678,6 +681,9 @@ end
 
 -- Color
 local ColorOnUpdate = function(self, elapsed)
+	if not self then self = this end
+	if not elapsed then elapsed = arg1 end
+	
 	for i = 1, table.getn(self) do
 		ColorAnim = self[i]
 
@@ -720,7 +726,7 @@ end
 local ProgressOnUpdate = function(self, elapsed)
   if not self then self = this end
   if not elapsed then elapsed = arg1 end
-  
+
 	for i = 1, table.getn(self) do
 		ProgressAnim = self[i]
 

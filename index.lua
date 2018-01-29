@@ -12,6 +12,8 @@ SmellyUI.engine = {}
 SmellyUI.engine.C = {} -- Config
 SmellyUI.engine.S = {} -- API functions
 
+SmellyUI_PlayerDB = {}
+
 setmetatable(SmellyUI.engine, {__index = getfenv(0)})
 
 SmellyUI:RegisterEvent('ADDON_LOADED')

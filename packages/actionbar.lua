@@ -24,6 +24,7 @@ local function skin(button, normalTextureName)
   if not button then button = this end
   if button.skinned then return end
 
+  -- Thank you blizzard
   normalTextureName = normalTextureName or 'NormalTexture'
 
   local name = button:GetName()
@@ -336,7 +337,7 @@ function f:PLAYER_ENTERING_WORLD()
   -- Stance / shapeshift bar
   if ShapeshiftButton1:IsShown() then
     setupBar(actionbars.shapeshift, 'ShapeshiftButton', GetNumShapeshiftForms())
-    S.point(actionbars.shapeshift, 'BOTTOM', Minimap, 'TOP', 0, 10)
+    S.point(actionbars.shapeshift, 'BOTTOMLEFT', SmellyUI_Actionbar1, 'TOPLEFT', 0, buttonSpacing)
 
     -- NOTE: this odd graphical thing only happens occasionally
     S.strip(ShapeshiftBarFrame)
@@ -351,7 +352,7 @@ function f:PLAYER_ENTERING_WORLD()
   -- Pet bar
   if (PetHasActionBar()) then
     setupBar(actionbars.pet, 'PetActionButton', NUM_PET_ACTION_SLOTS)
-    S.point(actionbars.pet, 'BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -10, 20)
+    S.point(actionbars.pet, 'BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 10, 20)
 
     -- TODO: test if we need this
     -- S.strip(PetActionBarFrame)
@@ -359,7 +360,7 @@ function f:PLAYER_ENTERING_WORLD()
     -- We have to skin manually since our hooksecurefunc is not called
     for i = 1,NUM_PET_ACTION_SLOTS do
       local button = _G['PetActionButton' .. i]
-      skin(button, 'NormalTexture2') -- ... blizz pls
+      skin(button, 'NormalTexture2')
     end
   end
 end

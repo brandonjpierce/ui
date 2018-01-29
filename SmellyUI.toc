@@ -3,6 +3,7 @@
 ## Version: 1.0
 ## Title: SmellyUI
 ## SavedVariables: SmellyUI_DB
+## SavedVariablesPerCharacter: SmellyUI_PlayerDB
 
 debug.lua
 extensions.lua
@@ -14,6 +15,7 @@ anim-lib.lua
 packages\actionbar.lua
 packages\aura.lua
 packages\bags.lua
+packages\chat.lua
 packages\cooldown.lua
 packages\hud.lua
 packages\mail.lua
