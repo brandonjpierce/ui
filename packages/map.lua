@@ -66,8 +66,7 @@ function f:ADDON_LOADED(addon)
   zone:SetWidth(Minimap:GetWidth())
   zone:SetFrameLevel(Minimap:GetFrameLevel() + 1)
   zone:SetFrameStrata('HIGH')
-  zone:SetPoint("BOTTOM", Minimap, 'BOTTOM', 0, 0)
-  backdrop(zone)
+  zone:SetPoint("TOP", Minimap, 'TOP', 0, 0)
   zone:SetAlpha(0)
 
   zone.text = zone:CreateFontString("zoneText", "LOW", "GameFontNormal")
@@ -81,8 +80,7 @@ function f:ADDON_LOADED(addon)
   coords:SetWidth(Minimap:GetWidth())
   coords:SetFrameLevel(Minimap:GetFrameLevel() + 1)
   coords:SetFrameStrata('HIGH')
-  coords:SetPoint("BOTTOM", Minimap, 'BOTTOM', 0, 0)
-  backdrop(coords)
+  coords:SetPoint("BOTTOM", Minimap, 'BOTTOM', 0, 3)
   coords:SetAlpha(0)
 
   coords.text = coords:CreateFontString("zoneText", "LOW", "GameFontNormal")
@@ -90,31 +88,28 @@ function f:ADDON_LOADED(addon)
   coords.text:SetAllPoints(coords)
   coords.text:SetJustifyH("CENTER")
 
-  local zoneHeight = zone:GetHeight()
-  local zoneAnimIn = CreateAnimationGroup(zone)
+  local zoneAnim = CreateAnimationGroup(zone)
+  local coordsAnim = CreateAnimationGroup(coords)
 
-  local coordsHeight = coords:GetHeight()
-  local coordsAnimIn = CreateAnimationGroup(coords)
-
-  local zoneSlideIn = zoneAnimIn:CreateAnimation('move')
-  zoneSlideIn:SetOffset(0, zoneHeight)
-  zoneSlideIn:SetDuration(0.2)
-  zoneSlideIn:SetSmoothing('inout')
-
-  local zoneFadeIn = zoneAnimIn:CreateAnimation('fade')
+  local zoneFadeIn = zoneAnim:CreateAnimation('fade')
   zoneFadeIn:SetChange(1)
   zoneFadeIn:SetDuration(0.2)
   zoneFadeIn:SetSmoothing('inout')
 
-  local coordsSlideIn = coordsAnimIn:CreateAnimation('move')
-  coordsSlideIn:SetOffset(0, 0.01)
-  coordsSlideIn:SetDuration(0.2)
-  coordsSlideIn:SetSmoothing('inout')
+  local zoneFadeOut = zoneAnim:CreateAnimation('fade')
+  zoneFadeOut:SetChange(0)
+  zoneFadeOut:SetDuration(0.2)
+  zoneFadeOut:SetSmoothing('inout')
 
-  local coordsFadeIn = coordsAnimIn:CreateAnimation('fade')
+  local coordsFadeIn = coordsAnim:CreateAnimation('fade')
   coordsFadeIn:SetChange(1)
   coordsFadeIn:SetDuration(0.2)
   coordsFadeIn:SetSmoothing('inout')
+
+  local coordsFadeOut = coordsAnim:CreateAnimation('fade')
+  coordsFadeOut:SetChange(0)
+  coordsFadeOut:SetDuration(0.2)
+  coordsFadeOut:SetSmoothing('inout')
 
   -- INTERACTIONS --
 
@@ -133,16 +128,13 @@ function f:ADDON_LOADED(addon)
       coords.text:SetText("|cffffaaaaN/A")
     end
 
-    zoneAnimIn:Play()
-    coordsAnimIn:Play()
+    zoneFadeIn:Play()
+    coordsFadeIn:Play()
   end)
 
   Minimap:SetScript("OnLeave", function()
-    zone:SetAlpha(0)
-    zone:SetPoint("BOTTOM", Minimap, 'BOTTOM', 0, 0)
-
-    coords:SetAlpha(0)
-    coords:SetPoint("BOTTOM", Minimap, 'BOTTOM', 0, 0)
+    zoneFadeOut:Play()
+    coordsFadeOut:Play()
   end)
 end
 

@@ -36,5 +36,5 @@ C.textures = {
 }
 
 C.modules = {
-  bags = true
+  bags = false
 }

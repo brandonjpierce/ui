@@ -7,13 +7,6 @@ function f:ADDON_LOADED(addon)
   f:UnregisterEvent('ADDON_LOADED')
 
   SetCVar('uiScale', 0.71)
-  SetCVar("buffDurations", 1)
-  SetCVar("countdownForCooldowns", 1)
-  SetCVar("autoQuestWatch", 1)
-	SetCVar("autoQuestProgress", 1)
-  SetCVar("removeChatDelay", 1)
-  SetCVar("alwaysShowActionBars", 1)
-  SetCVar("nameplateShowSelf", 0)
   SetCVar('profanityFilter', '0')
 
   ConsoleExec('CameraDistanceMaxFactor 5')
