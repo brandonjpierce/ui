@@ -1,12 +1,12 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 -- TODO
 -- 1. Optimize local vars
 -- 2. Setup hover bind feature from Elv
 -- 4. Test the shit out things
 
-local buttonSize = 48
-local buttonSpacing = 5
+local buttonSize = 32
+local buttonSpacing = 1
 
 local f = CreateFrame('Frame')
 
@@ -287,8 +287,8 @@ function f:PLAYER_ENTERING_WORLD()
   end
 
   -- Bar 1
-  setupBar(actionbars.bar1, 'ActionButton', 6)
-  S.point(actionbars.bar1, 'BOTTOMRIGHT', Minimap, 'BOTTOMLEFT', -10, 0)
+  setupBar(actionbars.bar1, 'ActionButton', 8)
+  S.point(actionbars.bar1, 'BOTTOM', UIParent, 'BOTTOM', 0, 30)
 
   -- TODO: figure out why this is necessary for shit to work
   for i = 1, NUM_ACTIONBAR_BUTTONS do
@@ -299,8 +299,8 @@ function f:PLAYER_ENTERING_WORLD()
 
   -- Bar 2
   if SHOW_MULTI_ACTIONBAR_1 then
-    setupBar(actionbars.bar2, 'MultiBarBottomLeftButton', 6)
-    S.point(actionbars.bar2, 'BOTTOMLEFT', Minimap, 'BOTTOMRIGHT', 10, 0)
+    setupBar(actionbars.bar2, 'MultiBarBottomLeftButton', 8)
+    S.point(actionbars.bar2, 'BOTTOM', SmellyUI_Actionbar1, 'TOP', 0, buttonSpacing)
     MultiBarBottomLeft:ClearAllPoints()
     MultiBarBottomLeft:SetAllPoints(actionbars.bar2)
   end
@@ -337,7 +337,12 @@ function f:PLAYER_ENTERING_WORLD()
   -- Stance / shapeshift bar
   if ShapeshiftButton1:IsShown() then
     setupBar(actionbars.shapeshift, 'ShapeshiftButton', GetNumShapeshiftForms())
-    S.point(actionbars.shapeshift, 'BOTTOMLEFT', SmellyUI_Actionbar1, 'TOPLEFT', 0, buttonSpacing)
+
+    if SHOW_MULTI_ACTIONBAR_1 then
+      S.point(actionbars.shapeshift, 'BOTTOM', SmellyUI_Actionbar2, 'TOP', 0, buttonSpacing)
+    else
+      S.point(actionbars.shapeshift, 'BOTTOM', SmellyUI_Actionbar1, 'TOP', 0, buttonSpacing)
+    end
 
     -- NOTE: this odd graphical thing only happens occasionally
     S.strip(ShapeshiftBarFrame)

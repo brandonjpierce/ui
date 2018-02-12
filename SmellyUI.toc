@@ -5,23 +5,16 @@
 ## SavedVariables: SmellyUI_DB
 ## SavedVariablesPerCharacter: SmellyUI_PlayerDB
 
+compatibility\lua\math.lua
+compatibility\lua\select.lua
+compatibility\lua\string.lua
+compatibility\lua\table.lua
+compatibility\wow\global.lua
+compatibility\wow\constants.lua
+compatibility\wow\hooks.lua
+compatibility\wow\quests.lua
+
 debug.lua
-extensions.lua
-index.lua
-config.lua
-api.lua
 anim-lib.lua
-
-packages\actionbar.lua
-packages\aura.lua
-packages\bags.lua
-packages\chat.lua
-packages\cooldown.lua
-packages\hud.lua
-packages\mail.lua
-packages\map.lua
-packages\tracking.lua
-packages\worldmap.lua
-packages\xp.lua
-
-packages\uf\player.lua
+core\load.xml
+packages\load.xml

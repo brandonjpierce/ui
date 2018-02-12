@@ -1,4 +1,4 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 local kill = S.kill
 

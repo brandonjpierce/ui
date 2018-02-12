@@ -1,0 +1,11 @@
+<Ui xmlns="http://www.blizzard.com/wow/ui/">
+	<Script file="lua\math.lua"/>
+	<Script file="lua\select.lua"/>
+	<Script file="lua\string.lua"/>
+	<Script file="lua\table.lua"/>
+
+  <Script file="wow\global.lua"/>
+  <Script file="wow\constants.lua"/>
+  <Script file="wow\hooks.lua"/>
+  <Script file="wow\quests.lua"/>
+</Ui>

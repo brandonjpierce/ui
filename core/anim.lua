@@ -8,6 +8,7 @@ end
 
 local pairs = pairs
 local floor = floor
+local getn = table.getn
 local tinsert = tinsert
 local tremove = tremove
 local strlower = strlower
@@ -141,7 +142,7 @@ local AnimMethods = {
 		Stop = function(self)
 			local UpdateFrame = UpdateFrames[self.Type]
 
-			for i = 1, table.getn(UpdateFrame) do
+			for i = 1, getn(UpdateFrame) do
 				if (UpdateFrame[i] == self) then
 					tremove(UpdateFrame, i)
 
@@ -349,7 +350,7 @@ local AnimMethods = {
 local GroupMethods = {
 	Play = function(self)
 		-- Play!
-		for i = 1, table.getn(self.Animations) do
+		for i = 1, getn(self.Animations) do
 			if (self.Animations[i].Order == self.Order) then
 				self.Animations[i]:Play()
 			end
@@ -366,7 +367,7 @@ local GroupMethods = {
 
 	Pause = function(self)
 		-- BUG?, only pause current order
-		for i = 1, table.getn(self.Animations) do
+		for i = 1, getn(self.Animations) do
 			if (self.Animations[i].Order == self.Order) then
 				self.Animations[i]:Pause()
 			end
@@ -382,7 +383,7 @@ local GroupMethods = {
 	end,
 
 	Stop = function(self)
-		for i = 1, table.getn(self.Animations) do
+		for i = 1, getn(self.Animations) do
 			self.Animations[i]:Stop()
 		end
 
@@ -408,7 +409,7 @@ local GroupMethods = {
 		local NumAtOrder = 0
 		local NumDoneAtOrder = 0
 
-		for i = 1, table.getn(self.Animations) do
+		for i = 1, getn(self.Animations) do
 			if (self.Animations[i].Order == self.Order) then
 				NumAtOrder = NumAtOrder + 1
 
@@ -434,7 +435,7 @@ local GroupMethods = {
 			end
 
 			-- Play!
-			for i = 1, table.getn(self.Animations) do
+			for i = 1, getn(self.Animations) do
 				if (self.Animations[i].Order == self.Order) then
 					self.Animations[i]:Play()
 				end
@@ -501,7 +502,7 @@ local MoveOnUpdate = function(self, elapsed)
 	if not self then self = this end
 	if not elapsed then elapsed = arg1 end
 
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		MoveAnim = self[i]
 
 		if (MoveAnim and (not MoveAnim.Paused)) then
@@ -520,7 +521,7 @@ local MoveOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -555,7 +556,7 @@ local FadeOnUpdate = function(self, elapsed)
   if not self then self = this end
   if not elapsed then elapsed = arg1 end
 
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		FadeAnim = self[i]
 
 		if (FadeAnim and (not FadeAnim.Paused)) then
@@ -573,7 +574,7 @@ local FadeOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -597,7 +598,7 @@ end
 
 -- Height
 local HeightOnUpdate = function(self, elapsed)
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		HeightAnim = self[i]
 
 		if (HeightAnim and (not HeightAnim.Paused)) then
@@ -615,7 +616,7 @@ local HeightOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -639,7 +640,7 @@ end
 
 -- Width
 local WidthOnUpdate = function(self, elapsed)
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		WidthAnim = self[i]
 
 		if (WidthAnim and (not WidthAnim.Paused)) then
@@ -657,7 +658,7 @@ local WidthOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -683,8 +684,8 @@ end
 local ColorOnUpdate = function(self, elapsed)
 	if not self then self = this end
 	if not elapsed then elapsed = arg1 end
-	
-	for i = 1, table.getn(self) do
+
+	for i = 1, getn(self) do
 		ColorAnim = self[i]
 
 		if (ColorAnim and (not ColorAnim.Paused)) then
@@ -702,7 +703,7 @@ local ColorOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -727,7 +728,7 @@ local ProgressOnUpdate = function(self, elapsed)
   if not self then self = this end
   if not elapsed then elapsed = arg1 end
 
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		ProgressAnim = self[i]
 
 		if (ProgressAnim and (not ProgressAnim.Paused)) then
@@ -745,7 +746,7 @@ local ProgressOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -765,7 +766,7 @@ end
 
 -- Sleep
 local SleepOnUpdate = function(self, elapsed)
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		SleepAnim = self[i]
 
 		if (SleepAnim and (not SleepAnim.Paused)) then
@@ -780,7 +781,7 @@ local SleepOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end
@@ -797,7 +798,7 @@ end
 
 -- Number
 local NumberOnUpdate = function(self, elapsed)
-	for i = 1, table.getn(self) do
+	for i = 1, getn(self) do
 		NumberAnim = self[i]
 
 		if (NumberAnim and (not NumberAnim.Paused)) then
@@ -815,7 +816,7 @@ local NumberOnUpdate = function(self, elapsed)
 		end
 	end
 
-	if (table.getn(self) == 0) then
+	if (getn(self) == 0) then
 		self:SetScript("OnUpdate", nil)
 	end
 end

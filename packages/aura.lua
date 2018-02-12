@@ -1,4 +1,4 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 -- TODO
 -- 1. Skin and position weapon frame / buffs
@@ -19,7 +19,7 @@ local function skin(name)
   local icon = _G[name .. 'Icon']
   local text = _G[name .. 'Duration']
 
-  size(button, 40)
+  size(button, 32)
   backdrop(button)
 
   if border then
@@ -37,7 +37,7 @@ end
 
 local function position(elapsed)
   BuffFrame:ClearAllPoints()
-  point(BuffFrame, 'TOPRIGHT', UIParent, 'TOPRIGHT', -10, -10)
+  point(BuffFrame, 'TOPRIGHT', Minimap, 'TOPLEFT', -10, 0)
 end
 
 function f:ADDON_LOADED(addon)

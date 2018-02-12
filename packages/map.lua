@@ -1,4 +1,4 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 -- TODO
 -- 1. Zone coords
@@ -48,9 +48,9 @@ function f:ADDON_LOADED(addon)
   Minimap:SetParent(UIParent)
   Minimap:SetMaskTexture(C.textures.blank)
   Minimap:ClearAllPoints()
-  size(Minimap, 120)
+  size(Minimap, 150)
   backdrop(Minimap)
-  point(Minimap, 'BOTTOM', 0, 20)
+  point(Minimap, 'TOPRIGHT', UIParent, 'TOPRIGHT', -30, -30)
 
   -- Mail icon
   MiniMapMailFrame:ClearAllPoints()

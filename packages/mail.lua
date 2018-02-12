@@ -1,4 +1,4 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 local f = CreateFrame('Frame')
 
@@ -7,7 +7,8 @@ function f:ADDON_LOADED(addon)
   f:UnregisterEvent('ADDON_LOADED')
 
   -- TODO: fix this
-  OpenMailFrame:SetScript('OnShow', function()
+  HookScript(OpenMailFrame, 'OnShow', function()
+    p('wat')
     if not IsShiftKeyDown() then return end
 
     if OpenMailMoneyButton:IsVisible() then
@@ -20,7 +21,9 @@ function f:ADDON_LOADED(addon)
   end)
 end
 
-f:RegisterEvent('ADDON_LOADED')
-f:SetScript('OnEvent', function()
+function f:OnEvent()
   this[event](this, arg1)
-end)
+end
+
+f:RegisterEvent('ADDON_LOADED')
+f:SetScript('OnEvent', f.OnEvent)

@@ -1,10 +1,10 @@
-setfenv(1, SmellyUI.engine)
+local S, C = SmellyUI:unpack()
 
 local f = CreateFrame('Frame')
 
 local itemsPerRow = 8
-local buttonSize = 48
-local buttonSpacing = 5
+local buttonSize = 32
+local buttonSpacing = 3
 local bagPadding = 10
 
 -- Bag / Bank IDs
@@ -366,7 +366,7 @@ f:RegisterEvent('ADDON_LOADED')
 f:RegisterEvent('PLAYER_ENTERING_WORLD')
 f:SetScript('OnEvent', function()
   if not C.modules.bags then return end
-  
+
   if event == 'ADDON_LOADED' then
     if arg1 ~= 'SmellyUI' then return end
     f:UnregisterEvent('ADDON_LOADED')
@@ -375,8 +375,8 @@ f:SetScript('OnEvent', function()
     createContainer('Bank')
     tinsert(UISpecialFrames, "SmellyUI_Bag")
 
-    storages.Bag:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -10, 20)
-    storages.Bank:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 10, 10)
+    storages.Bag:SetPoint('BOTTOMRIGHT', UIParent, 'BOTTOMRIGHT', -30, 30)
+    storages.Bank:SetPoint('BOTTOMLEFT', UIParent, 'BOTTOMLEFT', 30, 30)
 
     local Bag = ContainerFrame1
 
